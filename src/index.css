@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-zinc-50 text-zinc-900 dark:bg-[#131316] dark:text-zinc-100;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  * {
+    @apply selection:bg-sky-500/30;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-sky-400/70 ring-offset-1 ring-offset-transparent;
+  }
+}
+
+@layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(113 113 122 / 0.35) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-zinc-400/40 dark:bg-zinc-600/40;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .skeleton {
+    @apply animate-shimmer rounded-md bg-zinc-200/80 dark:bg-zinc-800/80;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.08) 40px,
+      rgba(255, 255, 255, 0) 80px
+    );
+    background-repeat: no-repeat;
+    background-size: 200px 100%;
+  }
+}
+
+@layer utilities {
+  .stream-caret::after {
+    content: '';
+    display: inline-block;
+    width: 0.5em;
+    height: 1.05em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    border-radius: 1px;
+    background: currentColor;
+    animation: blink-caret 0.9s step-end infinite;
+  }
+}
+
+/* Markdown rendering inside AI bubbles */
+.md-body {
+  @apply text-[15px] leading-relaxed;
+}
+.md-body > * + * {
+  @apply mt-3;
+}
+.md-body h1,
+.md-body h2,
+.md-body h3 {
+  @apply font-semibold leading-tight;
+}
+.md-body h1 {
+  @apply text-lg;
+}
+.md-body h2 {
+  @apply text-base;
+}
+.md-body h3 {
+  @apply text-[15px];
+}
+.md-body ul {
+  @apply list-disc pl-5 space-y-1;
+}
+.md-body ol {
+  @apply list-decimal pl-5 space-y-1;
+}
+.md-body a {
+  @apply underline underline-offset-2;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.md-body blockquote {
+  @apply border-l-2 pl-3 italic opacity-90;
+  border-color: color-mix(in srgb, currentColor 25%, transparent);
+}
+.md-body :not(pre) > code {
+  @apply rounded bg-black/10 px-1.5 py-0.5 font-mono text-[13px] dark:bg-white/10;
+}
+.md-body pre {
+  @apply m-0 overflow-x-auto p-4 font-mono text-[13px] leading-relaxed;
+}
+.md-body table {
+  @apply w-full border-collapse text-sm;
+}
+.md-body th,
+.md-body td {
+  @apply border px-2.5 py-1.5 text-left;
+  border-color: color-mix(in srgb, currentColor 15%, transparent);
+}
+.md-body hr {
+  border-color: color-mix(in srgb, currentColor 15%, transparent);
+}
+
+mark.search-hit {
+  @apply rounded bg-amber-300/70 px-0.5 text-inherit dark:bg-amber-400/40;
+}

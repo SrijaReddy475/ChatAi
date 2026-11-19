@@ -1,0 +1,6 @@
+# Supabase project configuration
+
+project_id = "vibe-chat"
+
+[functions.chat]
+verify_jwt = false
